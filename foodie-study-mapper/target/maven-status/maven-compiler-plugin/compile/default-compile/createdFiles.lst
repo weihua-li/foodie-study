@@ -1,0 +1,14 @@
+com\howard\mapper\OrderStatusMapper.class
+com\howard\mapper\CarouselMapper.class
+com\howard\mapper\ItemsCommentsMapper.class
+com\howard\mapper\UserAddressMapper.class
+com\howard\mapper\ItemsMapper.class
+com\howard\mapper\ItemsSpecMapper.class
+com\howard\mapper\OrdersMapper.class
+com\howard\my\mapper\MyMapper.class
+com\howard\mapper\CategoryMapper.class
+com\howard\mapper\ItemsSpecCopyMapper.class
+com\howard\mapper\UsersMapper.class
+com\howard\mapper\ItemsImgMapper.class
+com\howard\mapper\ItemsParamMapper.class
+com\howard\mapper\OrderItemsMapper.class

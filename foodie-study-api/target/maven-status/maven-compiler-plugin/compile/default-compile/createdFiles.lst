@@ -1,2 +1,5 @@
-com\howard\controller\HelloController.class
+com\howard\controller\PassportController.class
 com\howard\Application.class
+com\howard\config\CorsConfig.class
+com\howard\controller\HelloController.class
+com\howard\config\Swagger2.class

@@ -27,3 +27,14 @@ spring:
 mybatis:
   type-aliases-package: com.howard.pojo
   mapper-locations: classpath:mapper/*.xml
+
+############################################################
+#
+# mybatis mapper 配置
+#
+############################################################
+# 通用 Mapper 配置
+mapper:
+  mappers: com.howard.my.mapper.MyMapper
+  not-empty: false
+  identity: MYSQL
