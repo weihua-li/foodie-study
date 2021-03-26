@@ -3,11 +3,16 @@ package com.howard.controller;
 import com.howard.bo.UserBO;
 import com.howard.pojo.Users;
 import com.howard.service.UserService;
+import com.howard.utils.CookieUtils;
 import com.howard.utils.JSONResult;
+import com.howard.utils.JsonUtils;
 import com.howard.utils.MD5Utils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author: Howard
@@ -40,7 +45,8 @@ public class PassportController {
     }
 
     @PostMapping("/regist")
-    public JSONResult regist(@RequestBody UserBO userBO){
+    public JSONResult regist(@RequestBody UserBO userBO,
+                             HttpServletRequest request, HttpServletResponse response){
 
         String username = userBO.getUsername();
         String password = userBO.getPassword();
@@ -70,13 +76,18 @@ public class PassportController {
         }
 
         //5、实现注册
-        userService.creatUser(userBO);
+        Users result = userService.creatUser(userBO);
+
+        result = setNullProperty(result);
+
+        CookieUtils.setCookie(request,response,"user",
+                JsonUtils.objectToJson(result),true);
 
         return JSONResult.ok();
     }
 
     @PostMapping("/login")
-    public JSONResult login(@RequestBody UserBO userBO) throws Exception{
+    public JSONResult login(@RequestBody UserBO userBO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 
         String username = userBO.getUsername();
         String password = userBO.getPassword();
@@ -93,6 +104,21 @@ public class PassportController {
             return JSONResult.errorMsg("用户名或密码错误");
         }
 
-        return JSONResult.ok(result);
+        result = setNullProperty(result);
+
+        CookieUtils.setCookie(request,response,"user",
+                JsonUtils.objectToJson(result),true);
+
+        return JSONResult.ok();
+    }
+
+    private Users setNullProperty(Users userResult){
+        userResult.setPassword(null);
+        userResult.setRealname(null);
+        userResult.setBirthday(null);
+        userResult.setEmail(null);
+        userResult.setSex(null);
+
+        return userResult;
     }
 }

@@ -1,3 +1,4 @@
+com\howard\utils\JsonUtils.class
 org\n3r\idworker\Id.class
 org\n3r\idworker\strategy\DefaultRandomCodeStrategy.class
 com\howard\utils\DateUtil.class
@@ -6,6 +7,7 @@ com\howard\utils\JSONResult.class
 org\n3r\idworker\Code.class
 org\n3r\idworker\strategy\FileLock.class
 org\n3r\idworker\Test.class
+com\howard\utils\CookieUtils.class
 org\n3r\idworker\Sid$1.class
 org\n3r\idworker\utils\Props.class
 org\n3r\idworker\strategy\DefaultRandomCodeStrategy$1.class
