@@ -11,7 +11,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:9980/foodie-shop-study?useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://127.0.0.1:3306/foodie-shop-study?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: root
     hikari:
@@ -27,6 +27,8 @@ spring:
 mybatis:
   type-aliases-package: com.howard.pojo
   mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 ############################################################
 #

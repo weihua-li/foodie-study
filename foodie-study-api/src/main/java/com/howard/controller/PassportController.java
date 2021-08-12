@@ -7,6 +7,8 @@ import com.howard.utils.CookieUtils;
 import com.howard.utils.JSONResult;
 import com.howard.utils.JsonUtils;
 import com.howard.utils.MD5Utils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  * @date: 2021/3/23 14:25
  */
 
+
+@Api(value = "注册登录",tags = {"用于注册登录的相关接口"})
 @RestController
 @RequestMapping("passport")
 public class PassportController {
@@ -26,6 +30,7 @@ public class PassportController {
     @Autowired
     private UserService userService;
 
+    @ApiOperation(value = "检查用户名是否重复",notes = "检查用户名是否重复",httpMethod = "GET")
     @GetMapping("/usernameIsExist")
     public JSONResult usernameIsExist(@RequestParam String username){
 
@@ -110,6 +115,17 @@ public class PassportController {
                 JsonUtils.objectToJson(result),true);
 
         return JSONResult.ok();
+    }
+
+    @ApiOperation(value = "用户退出登录")
+    @PostMapping("/logout")
+    public JSONResult logout(@RequestParam String userId, HttpServletRequest request, HttpServletResponse response){
+
+        //清楚用户cookie信息
+        CookieUtils.deleteCookie(request,response,"user");
+
+        return JSONResult.ok();
+
     }
 
     private Users setNullProperty(Users userResult){
